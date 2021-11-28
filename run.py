@@ -1,3 +1,8 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+def play_game():
+    print("Let's play the hangman game!")
+
+    letter = input('Enter a letter A-Z')
+
+    print(letter)
+
+play_game()
