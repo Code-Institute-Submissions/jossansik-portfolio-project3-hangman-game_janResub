@@ -9,7 +9,7 @@ def play_game():
 
     print("Let's play the hangman game!")
 
-    letter = input('Enter a letter A-Z')
+    letter = input('To make your guess, choose a letter from A-Z & press enter: ')
 
     print(letter)
 
