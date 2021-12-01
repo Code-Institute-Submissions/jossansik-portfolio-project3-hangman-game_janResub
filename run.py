@@ -32,4 +32,14 @@ def play_game():
 
     print(user.occurring_letters)
 
+    total_list = ''
+    #Validate the players char
+    for index, char in enumerate(word_chars):
+        if index in user.occurring_letters:
+            total_list += word_chars[index] + ' '
+        else:
+            total_list += '_ '
+
+            print(total_list)    
+
 play_game()
