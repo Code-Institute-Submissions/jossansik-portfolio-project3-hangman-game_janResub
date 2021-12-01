@@ -1,11 +1,14 @@
 # Imports the word for the player to guess 
 import random
 from words import words
+# Imports the hangman diagram
+from hangmen import hangmen
 
 # Class representing the player
 class Player:
     def __init__(self):
         self.occurring_letters = []
+        self.incorrect_count = 0
 
 # Turns the random word into a list of characters
 def play_game():
@@ -55,6 +58,13 @@ def play_game():
                     total_list += '_ '
 
             print(total_list)   
+
+            no_match = letter not in word_chars
+            # When no match, add incorrect count.
+            if no_match:
+                print(hangmen[player.incorrect_count])
+                player.incorrect_count += 1
+
         # Catch and print error
         except ValueError as err:
            print(err) 
