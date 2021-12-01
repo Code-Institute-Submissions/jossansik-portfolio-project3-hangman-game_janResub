@@ -1,10 +1,13 @@
+#imports the word for the player to guess 
 import random
 from words import words
 
-class User:
+#class representing the player
+class Player:
     def __init__(self):
         self.occurring_letters = []
 
+#turns the random word into a list of characters
 def play_game():
     random_word = random.choice(words).upper()
     word_chars = list(random_word)
@@ -13,34 +16,45 @@ def play_game():
 
     print("Let's play the hangman game!")
 
-    user = User()
+    #instantiates the player
+    player = Player()
 
     while(1):
         letter = input('To make your guess, choose a letter from A-Z & press enter: ')
 
-        print(letter)
-
-        # Get all chars from the word where there is a match with occuring letters
-        valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
-
-        print(valid_indices)
-
-        # Validates the players input
-        for index in valid_indices:
-            # Adds the guessed letter on all occurring indices
-            if index not in user.occurring_letters:
-                user.occurring_letters.append(index)
-
-        print(user.occurring_letters)
-
-        total_list = ''
-        #Validate the players char
-        for index, char in enumerate(word_chars):
-            if index in user.occurring_letters:
-                total_list += word_chars[index] + ' '
+        try:
+            #checks if input has a value, if not raise exception
+            if letter:
+                pass
             else:
-                total_list += '_ '
+                raise ValueError('Oops, something was wrong. Try again!')
 
-        print(total_list)    
+            print(letter)
+
+            # Get all chars from the word where there is a match with occuring letters
+            valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
+
+            print(valid_indices)
+
+            # Validates the players input
+            for index in valid_indices:
+                # Adds the guessed letter on all occurring indices
+                if index not in player.occurring_letters:
+                    player.occurring_letters.append(index)
+
+            print(player.occurring_letters)
+
+            total_list = ''
+            #Validate the players char
+            for index, char in enumerate(word_chars):
+                if index in player.occurring_letters:
+                    total_list += word_chars[index] + ' '
+                else:
+                    total_list += '_ '
+
+            print(total_list)   
+        #catch and print error
+        except ValueError as err:
+           print(err) 
 
 play_game()
