@@ -1,13 +1,13 @@
-#imports the word for the player to guess 
+# Imports the word for the player to guess 
 import random
 from words import words
 
-#class representing the player
+# Class representing the player
 class Player:
     def __init__(self):
         self.occurring_letters = []
 
-#turns the random word into a list of characters
+# Turns the random word into a list of characters
 def play_game():
     random_word = random.choice(words).upper()
     word_chars = list(random_word)
@@ -16,14 +16,14 @@ def play_game():
 
     print("Let's play the hangman game!")
 
-    #instantiates the player
+    # Instantiates the player
     player = Player()
 
     while(1):
         letter = input('To make your guess, choose a letter from A-Z & press enter: ')
 
         try:
-            #checks if input has a value, if not raise exception
+            # Checks if input has a value, if not raise exception
             if letter:
                 pass
             else:
@@ -41,11 +41,13 @@ def play_game():
                 # Adds the guessed letter on all occurring indices
                 if index not in player.occurring_letters:
                     player.occurring_letters.append(index)
+                else:
+                    raise ValueError('Enter a new letter!')
 
             print(player.occurring_letters)
 
             total_list = ''
-            #Validate the players char
+            # Validates the players char
             for index, char in enumerate(word_chars):
                 if index in player.occurring_letters:
                     total_list += word_chars[index] + ' '
@@ -53,7 +55,7 @@ def play_game():
                     total_list += '_ '
 
             print(total_list)   
-        #catch and print error
+        # Catch and print error
         except ValueError as err:
            print(err) 
 
