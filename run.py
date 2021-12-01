@@ -17,9 +17,19 @@ def play_game():
 
     print(letter)
 
-     # Get all chars from actual word where we have a match.
+     # Get all chars from the word where there is a match with occuring letters
     valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
-    
+
     print(valid_indices)
+
+    user = User()
+
+     # Validates the players input
+    for index in valid_indices:
+        # Adds the guessed letter on all occurring indices
+        if index not in user.occurring_letters:
+            user.occurring_letters.append(index)
+
+    print(user.occurring_letters)
 
 play_game()
