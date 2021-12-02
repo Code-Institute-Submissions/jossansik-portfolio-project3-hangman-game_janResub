@@ -3,6 +3,7 @@ Hangman game for python terminal
 """
 # Imports the word for the player to guess
 import random
+import re
 from words import words
 # Imports the hangman diagram
 from hangmen import hangmen
@@ -52,14 +53,18 @@ def play_game():
     player = Player()
 
     while 1:
-        letter = input("To make your guess, choose a letter from A-Z & press enter: ")
+        letter = input("To make your guess, choose a letter from aA-zZ & press enter: ")
 
         try:
+            letter = letter.upper()
+
+            is_valid_letter = re.search(r"[A-Z]", letter)
+
             # Checks if input has a value, if not raise exception
-            if letter:
+            if is_valid_letter:
                 pass
             else:
-                raise ValueError("Oops, something was wrong. Try again!")
+                raise ValueError("Oops, you must enter a letter. Try again!")
 
             # Get all chars from the word where there is a match with occuring letters
             valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
