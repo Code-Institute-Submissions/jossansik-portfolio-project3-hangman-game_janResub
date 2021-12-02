@@ -1,5 +1,5 @@
 """
-The hangman progress
+The hangman progress module
 """
 hangmen = ["""
  ____

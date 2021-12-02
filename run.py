@@ -1,17 +1,17 @@
-# Imports the word for the player to guess 
+"""
+Hangman game for python terminal
+"""
+# Imports the word for the player to guess
 import random
 from words import words
 # Imports the hangman diagram
 from hangmen import hangmen
+from player import Player
 
-# Class representing the player
-class Player:
-    def __init__(self):
-        self.occurring_letters = []
-        self.incorrect_count = 0
-
-# Turns the random word into a list of characters
 def play_game():
+    """
+    Start a game of hangman
+    """
     random_word = random.choice(words).upper()
     word_chars = list(random_word)
 
@@ -22,7 +22,7 @@ def play_game():
     # Instantiates the player
     player = Player()
 
-    while(1):
+    while 1:
         letter = input('To make your guess, choose a letter from A-Z & press enter: ')
 
         try:
@@ -51,7 +51,7 @@ def play_game():
 
             total_list = ''
             # Validates the players char
-            for index, char in enumerate(word_chars):
+            for index in enumerate(word_chars):
                 if index in player.occurring_letters:
                     total_list += word_chars[index] + ' '
                 else:
@@ -69,20 +69,18 @@ def play_game():
 
             # When max allowed incorrect guesses has been made, end game.
             if player.incorrect_count >= 8:
-                raise Exception(f'The correct answer was {random_word}')
+                print(f'The correct answer was {random_word}')
+                break
 
             # When accepted chars and actual word chars is correct,
             # should probably change diff in other way.
             if len(player.occurring_letters) == len(word_chars):
                 print(total_list)
                 print('Congratulations, You won!')
-                break    
+                break
 
         # Catch and print error
         except ValueError as err:
-            print(err) 
-        except Exception as err:
             print(err)
-            break
 
 play_game()
