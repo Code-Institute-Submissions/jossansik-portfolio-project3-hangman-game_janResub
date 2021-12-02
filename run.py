@@ -65,8 +65,17 @@ def play_game():
                 print(hangmen[player.incorrect_count])
                 player.incorrect_count += 1
 
+            print(player.incorrect_count)
+
+            # When max allowed incorrect guesses has been made, end game.
+            if player.incorrect_count >= 8:
+                raise Exception(f'The correct answer was {random_word}')
+
         # Catch and print error
         except ValueError as err:
-           print(err) 
+            print(err) 
+        except Exception as err:
+            print(err)
+            break
 
 play_game()
