@@ -41,12 +41,12 @@ def play_game():
 
     print(RULES)
 
-    hidden_word = "Guess the animal = "
+    guess_the_word = "Guess the animal = "
 
     for _ in word_chars:
-        hidden_word += "_ "
+        guess_the_word += "_ "
 
-    print("\n", hidden_word, "\n")
+    print("\n", guess_the_word, "\n")
 
     # Instantiates the player
     player = Player()
@@ -95,7 +95,7 @@ def play_game():
 
             # When accepted chars and actual word chars is correct,
             # should probably change diff in other way.
-            if len(player.occurring_letters) == len(word_chars):
+            if player.occurring_letters == [index for index, _ in enumerate(word_chars)]:
                 print(progress)
                 print("Congratulations, You won!")
                 break
