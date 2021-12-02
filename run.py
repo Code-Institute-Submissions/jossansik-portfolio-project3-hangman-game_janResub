@@ -42,7 +42,7 @@ def play_game():
 
     print(RULES)
 
-    guess_the_word = "Guess the animal = "
+    guess_the_word = "Guess the animal: "
 
     for _ in word_chars:
         guess_the_word += "_ "
@@ -51,62 +51,89 @@ def play_game():
 
     # Instantiates the player
     player = Player()
-
-    while 1:
+    
+    while True:
         letter = input("To make your guess, choose a letter from aA-zZ & press enter: ")
 
         try:
             letter = letter.upper()
-
-            is_valid_letter = re.search(r"[A-Z]", letter)
-
-            # Checks if input has a value, if not raise exception
-            if is_valid_letter:
-                pass
-            else:
-                raise ValueError("Oops, you must enter a letter. Try again!")
-
-            # Get all chars from the word where there is a match with occuring letters
-            valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
-
-            # Validates the players input
-            for index in valid_indices:
-                # Adds the guessed letter on all occurring indices
-                if index not in player.occurring_letters:
-                    player.occurring_letters.append(index)
-                else:
-                    raise ValueError("Enter a new letter!")
-
-            progress = ""
-            # Validates the players char
-            for index, _ in enumerate(word_chars):
-                if index in player.occurring_letters:
-                    progress += word_chars[index] + " "
-                else:
-                    progress += "_ "
-
-            print(progress)
-
-            no_match = letter not in word_chars
-            # When no match, add incorrect count.
-            if no_match:
-                print(hangmen[player.incorrect_count])
-                player.incorrect_count += 1
-
-            # When max allowed incorrect guesses has been made, end game.
-            if player.incorrect_count >= 8:
-                print(f"The correct answer was {random_word}")
+            validate_input(letter)
+            add_letter(word_chars, player, letter)
+            show_game_progress(word_chars, player)
+            increase_invalid_attempts(word_chars, letter, player)
+            if too_many_failed_attempts(random_word, player):
                 break
-
-            # When accepted chars and actual word chars is correct,
-            # should probably change diff in other way.
-            if player.occurring_letters == [index for index, _ in enumerate(word_chars)]:
-                print(progress)
-                print("Congratulations, You won!")
+            if game_won(player, word_chars):
                 break
-
         # Catch and print error
         except ValueError as err:
             print(err)
+
+def validate_input(letter):
+    """
+    Validates input with regular expression
+    """
+    is_valid_letter = re.search(r"[A-Z]", letter)
+
+    # Checks if input has a value, if not raise exception
+    if is_valid_letter:
+        pass
+    else:
+        raise ValueError("Oops, you must enter a letter. Try again!")
+
+def add_letter(word_chars, player, letter):
+    """
+    Adds the guessed letter to all occurring indices if the letter is in the word
+    """
+    # Get all chars from the word where there is a match with occuring letters
+    valid_indices = [index for index, char in enumerate(word_chars) if letter in char]
+
+    for index in valid_indices:
+        # Adds the guessed letter on all occurring indices
+        if index not in player.occurring_letters:
+            player.occurring_letters.append(index)
+        else:
+            raise ValueError("Enter a new letter!")
+
+def show_game_progress(word_chars, player):
+    """
+    Print out the progress for each attempt
+    """
+    progress = ""
+    for index, _ in enumerate(word_chars):
+        if index in player.occurring_letters:
+            progress += word_chars[index] + " "
+        else:
+            progress += "_ "
+
+    print(progress)
+
+def increase_invalid_attempts(word_chars, letter, player):
+    """
+    When no match, add incorrect count and show hangman progress
+    """
+    no_match = letter not in word_chars
+    if no_match:
+        print(hangmen[player.incorrect_count])
+        player.incorrect_count += 1
+
+def too_many_failed_attempts(random_word, player):
+    """
+    When max allowed incorrect guesses has been made, end game
+    """
+    if player.incorrect_count >= 8:
+        print(f"The correct answer was {random_word}")
+        return True
+    return False
+
+def game_won(player, word_chars):
+    """
+    When accepted chars and actual word chars is correct,
+    should probably change diff in other way.
+    """
+    if len(player.occurring_letters) == len(word_chars):
+        print("\nCongratulations, You won!\n")
+        return True
+    return False
 
 play_game()
