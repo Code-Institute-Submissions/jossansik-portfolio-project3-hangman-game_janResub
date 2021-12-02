@@ -57,7 +57,7 @@ def play_game():
                 else:
                     total_list += '_ '
 
-            print(total_list)   
+            print(total_list)
 
             no_match = letter not in word_chars
             # When no match, add incorrect count.
@@ -70,6 +70,13 @@ def play_game():
             # When max allowed incorrect guesses has been made, end game.
             if player.incorrect_count >= 8:
                 raise Exception(f'The correct answer was {random_word}')
+
+            # When accepted chars and actual word chars is correct,
+            # should probably change diff in other way.
+            if len(player.occurring_letters) == len(word_chars):
+                print(total_list)
+                print('Congratulations, You won!')
+                break    
 
         # Catch and print error
         except ValueError as err:

@@ -1,3 +1,6 @@
+"""
+The hangman progress
+"""
 hangmen = ["""
  ____
 |/   |
