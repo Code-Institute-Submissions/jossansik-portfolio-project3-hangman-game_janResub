@@ -55,7 +55,7 @@ def play_game():
 
     while True:
         letter = input("To make your guess, choose a " +
-                       "letter from A-Z & press enter: ")
+                       "letter from A-Z & press enter:\n")
 
         try:
             letter = letter.upper()
