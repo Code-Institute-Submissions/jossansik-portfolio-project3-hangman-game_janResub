@@ -14,22 +14,17 @@ RULES = '''
 Let's play a game of animal word-hangman!
 
 Rules:
-* The player will guess what animal is hidden in the secret word, which is
-represented by a row of dashes for each letter of the word.
-* If the player suggest a letter which occurs in the word,
-it is written out in all its correct positions.
-* If the suggested letter does not occur in the word, one element of a
+* Guess the secret word, represented by dashes for each letter of the word.
+* If the guessed letter occurs in the word, it is written out in all its
+correct positions.
+* If the guessed letter does not occur in the word, one element of a
 hanged stick figure is drawn out as a tally mark.
-* If the player makes 8 incorrect guesses, the hanged man diagram is completes
-and the guesser loses.
+* After 8 incorrect guesses, the hanged man is completed and the guesser loses.
 * If the word is correctly guessed, the game is over and the player wins.
-
-Press enter to start the game!
 
 {o,o}
 |)__)    Good Luck!
 -“-“-
-
 ===============================================================================
 '''
 
