@@ -130,6 +130,8 @@ The steps for deploying were:
 
 ## Credits
 
+Flowchart was made using [Miro](https://miro.com/)
+
 Hangman animal words found [here](https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c)
 
 Hangman ASCII-art found [here](http://www.fssnip.net/mO/title/Hangman)
