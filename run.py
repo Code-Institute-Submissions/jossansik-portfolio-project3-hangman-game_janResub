@@ -101,7 +101,7 @@ def show_game_progress(word_chars, player):
     """
     Print out the progress for each attempt
     """
-    progress = ""
+    progress = "\nGuess the animal: "
     for index, _ in enumerate(word_chars):
         if index in player.occurring_letters:
             progress += word_chars[index] + " "
@@ -117,8 +117,12 @@ def increase_invalid_attempts(word_chars, letter, player):
     """
     no_match = letter not in word_chars
     if no_match:
+        if letter not in player.guessed_incorrect_letters:
+            player.guessed_incorrect_letters.append(letter)
         print(hangmen[player.incorrect_count])
         player.incorrect_count += 1
+    if player.guessed_incorrect_letters:
+        print("\nWrong guesses:", ", ".join(player.guessed_incorrect_letters), "\n")
 
 
 def too_many_failed_attempts(random_word, player):
