@@ -11,7 +11,7 @@ from player import Player
 
 RULES = '''
 ===============================================================================
-Let's play a game of animal word-hangman!
+Let's play a game of animal word-hangman! To restart the game, type RESTART!
 
 Rules:
 * Guess the secret word, represented by dashes for each letter of the word.
@@ -35,6 +35,7 @@ def play_game():
     """
     random_word = random.choice(words).upper()
     word_chars = list(random_word)
+    restart_game = False
 
     print(RULES)
 
@@ -43,7 +44,7 @@ def play_game():
     for _ in word_chars:
         guess_the_word += "_ "
 
-    print("\n", guess_the_word, "\n")
+    print(guess_the_word, "\n")
 
     # Instantiates the player
     player = Player()
@@ -54,6 +55,9 @@ def play_game():
 
         try:
             letter = letter.upper()
+            restart_game = should_restart_game(letter)
+            if (restart_game):
+                break
             validate_input(letter)
             add_letter(word_chars, player, letter)
             show_game_progress(word_chars, player)
@@ -65,6 +69,19 @@ def play_game():
         # Catch and print error
         except ValueError as err:
             print(err)
+
+    # Restarts the game based on user interaction
+    if restart_game:
+        play_game()
+
+
+def should_restart_game(letter):
+    """
+    Lets player restart the game.
+    """
+    if letter == "RESTART":
+        return True
+    return False
 
 
 def validate_input(letter):
@@ -133,7 +150,7 @@ def too_many_failed_attempts(random_word, player):
     When max allowed incorrect guesses has been made, end game
     """
     if player.incorrect_count >= 8:
-        print(f"The correct answer was {random_word}")
+        print(f"The correct answer was {random_word}\n")
         return True
     return False
 
