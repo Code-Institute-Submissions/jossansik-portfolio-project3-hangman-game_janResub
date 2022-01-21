@@ -94,7 +94,7 @@ def validate_input(letter):
     is_valid_letter = re.search(r"[A-Z]", letter)
 
     # Checks if input has a value, if not raise exception
-    if is_valid_letter:
+    if is_valid_letter and len(letter) == 1:
         pass
     else:
         raise ValueError("Input must be a letter (A-Z)!\n")
