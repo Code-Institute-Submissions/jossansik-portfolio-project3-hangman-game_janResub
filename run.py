@@ -118,7 +118,8 @@ def add_letter(word_chars, player, letter):
         if index not in player.occurring_letters:
             player.occurring_letters.append(index)
         else:
-            raise ValueError(f"\nYou already guessed {letter}. Try another letter!\n")
+            raise ValueError(f"\nYou already guessed {letter}. " +
+                             "Try another letter!\n")
 
 
 def show_game_progress(word_chars, player):
@@ -149,7 +150,8 @@ def increase_invalid_attempts(word_chars, letter, player):
             print(f"\nYou already guessed {letter}. Try another letter!\n")
 
     if player.guessed_incorrect_letters:
-        print("\nWrong guesses:", ", ".join(player.guessed_incorrect_letters), "\n")
+        print("\nWrong guesses:", ", ".join(player.guessed_incorrect_letters),
+              "\n")
 
 
 def too_many_failed_attempts(random_word, player):
