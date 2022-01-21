@@ -71,13 +71,16 @@ def validate_input(letter):
     """
     Validates input with regular expression
     """
+    if not letter:
+        raise ValueError("Empty input is given, please give letter input!\n")
+
     is_valid_letter = re.search(r"[A-Z]", letter)
 
     # Checks if input has a value, if not raise exception
     if is_valid_letter:
         pass
     else:
-        raise ValueError("Oops, you must enter a letter. Try again!")
+        raise ValueError("Input must be a letter (A-Z)!\n")
 
 
 def add_letter(word_chars, player, letter):
