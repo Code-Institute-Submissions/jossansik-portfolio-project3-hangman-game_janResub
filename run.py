@@ -74,6 +74,10 @@ def play_game():
     if restart_game:
         play_game()
 
+    # Lets player interact to play again
+    input("Press ENTER to try again\n")
+    play_game()
+
 
 def should_restart_game(letter):
     """
