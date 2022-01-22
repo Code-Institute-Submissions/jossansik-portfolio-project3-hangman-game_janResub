@@ -100,6 +100,34 @@ If the user does not figure out the correct answer and makes 8 incorrect guesses
 
 The application was tested on Google Chrome and Safari browsers.
 
+For input validations, the following cases were tested:
+
+1. When the player inputs a letter that is not in the word, the letter is added to a list of wrong guesses and written out in the console, so that the player can keep track of which letters they have already guessed.
+
+![Input1](screenshots/wrong_guesses.png)
+
+2. To ensure that the player only can input one letter at a time. A message is shown that input must be a letter from a-z.
+
+![Input2](screenshots/testing_input1.png)
+
+3. To ensure that the player only can input letters from a-z, the same message as above is shown.
+
+![Input3](screenshots/testing_input2.png)
+
+4. If the player inputs a letter that is already guessed, a message is shown requesting the player to guess another letter, whether the letter is in the word or not. The hangman chart is not printed out.
+
+![Input4](screenshots/already_guessed2.png)
+
+![Input5](screenshots/already_guessed.png)
+
+If the player wants to restart the game, "restart" can be inputted. This resets the cosole and the rules are printed out again.
+
+![Input6](screenshots/restart.png)
+
+when the game is over and the player has either lost or won, a message is displayed requesting the player to press enter to try again.
+
+![Input7](screenshots/try_again.png)
+![Input8](screenshots/try_again2.png)
 
 ## Bugs
 
@@ -110,6 +138,8 @@ The application was tested on Google Chrome and Safari browsers.
 ## Validator testing
 
 Basic manual testing procedures for code validation were implemented on the project by using the pep8onlinecom linter. The testing was used to validate every one of the project files to ensure there were no syntax errors.
+
+![PEP8](screenshots/PEP8_validation.png)
 
 ## Accessibility
 
