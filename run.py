@@ -170,7 +170,11 @@ def game_won(player, word_chars):
     should probably change diff in other way.
     """
     if len(player.occurring_letters) == len(word_chars):
-        print("\nCongratulations, You won!\n")
+        print("""
+{o,o}
+|)__)    Congratulations, You won!
+-“-“-
+""")
         return True
     return False
 
