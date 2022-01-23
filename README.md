@@ -120,11 +120,11 @@ For input validations, the following cases were tested:
 
 ![Input5](screenshots/already_guessed.png)
 
-If the player wants to restart the game, "restart" can be inputted. This resets the cosole and the rules are printed out again.
+5. If the player wants to restart the game, "restart" can be inputted. This resets the cosole and the rules are printed out again.
 
 ![Input6](screenshots/restart.png)
 
-when the game is over and the player has either lost or won, a message is displayed requesting the player to press enter to try again.
+6. When the game is over and the player has either lost or won, a message is displayed requesting the player to press enter to try again.
 
 ![Input7](screenshots/try_again.png)
 ![Input8](screenshots/try_again2.png)
@@ -137,7 +137,7 @@ when the game is over and the player has either lost or won, a message is displa
 
 ## Validator testing
 
-Basic manual testing procedures for code validation were implemented on the project by using the pep8onlinecom linter. The testing was used to validate every one of the project files to ensure there were no syntax errors.
+Basic manual testing procedures for code validation were implemented on the project by using the pep8onlinecom linter. The testing was used to validate every python file in the project to ensure there were no syntax or formatting errors.
 
 ![PEP8](screenshots/PEP8_validation.png)
 
